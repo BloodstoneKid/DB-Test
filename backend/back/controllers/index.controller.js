@@ -214,35 +214,76 @@ const updateProducto = async (req, res) => {
 
 //Deletes
 
-
-
-
-/*
-GET
-const getMembers = async (req, res) => {
-    const response = await pool.query('SELECT * FROM miembro;');
+const deleteCategoria = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { id } = req.body;
+    const response = await pool.query('DELETE FROM AMY_Categoria WHERE AMY_Categoria.id_categoria = $1;',[id]);
+    res.end(JSON.stringify(response.rows));
+}
+const deleteProducto = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { id } = req.body;
+    const response = await pool.query('DELETE FROM AMY_Producto WHERE AMY_Producto.id_producto = $1;',[id]);
+    res.end(JSON.stringify(response.rows));
+}
+const deletePlato = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { id } = req.body;
+    const response = await pool.query('DELETE FROM AMY_Plato WHERE AMY_Plato.id_plato = $1;',[id]);
+    res.end(JSON.stringify(response.rows));
+}
+const deleteOferta = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { id } = req.body;
+    const response = await pool.query('DELETE FROM AMY_Descuento WHERE AMY_Descuento.id_descuento = $1;',[id]);
+    res.end(JSON.stringify(response.rows));
+}
+const deleteEvento = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { id } = req.body;
+    const response = await pool.query('DELETE FROM AMY_Evento WHERE AMY_Evento.id_evento = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 
-POST
-const createMember = async (req, res) => {
-    const { cedula, nombre, apellido, edad } = req.body;
-    const response = await pool.query('INSERT INTO miembro (cedula, nombre, apellido, edad) VALUES ($1, $2, $3, $4)', [cedula, nombre, apellido, edad]);
-}
 
-PUT
-const updateMember = async (req, res) => {
-    const cedula = parseInt(req.params.cedula);
-    const { nombre, apellido, edad } = req.body;
 
-    const response =await pool.query('UPDATE miembro SET nombre = $1, apellido = $2 , edad = $3 WHERE cedula = $4', [
-        nombre, apellido, edad, cedula
-    ]);
-};
+
 
 module.exports = {
-    getMembers,
-    createMember,
-    updateMember
+    getInfoCategoria,
+    getInfoCategorias,
+    getInfoEvento,
+    getInfoEventos,
+    getInfoFacturas,
+    getInfoMenu,
+    getInfoOferta,
+    getInfoOfertas,
+    getInfoPlato,
+    getInfoProducto,
+    getInfoProductos,
+    getInfoTienda,
+    getInfoTiendas,
+    getInfoTodasCategorias,
+    getProductosRelacionados,
+    getSubCategorias,
+    AfiliarCliente,
+    crearCategoria,
+    crearEvento,
+    crearFactura,
+    crearMenu,
+    crearOferta,
+    crearPlato,
+    crearProducto,
+    updateCatalogo,
+    updateCategoria,
+    updateEvento,
+    updateMenu,
+    updateOferta,
+    updatePlato,
+    updateProducto,
+    deleteCategoria,
+    deleteEvento,
+    deleteOferta,
+    deletePlato,
+    deleteProducto
 }
-*/

@@ -1,6 +1,14 @@
 const { Router } = require('express');
 const router = Router();
-//const {} = require('../controllers/index.controller');
+const { getInfoCategoria, getInfoCategorias, getSubCategorias,
+    getInfoEvento, getInfoEventos, getInfoFacturas, getInfoMenu,
+    getInfoOferta, getInfoOfertas, getInfoPlato, getInfoProducto,
+    getInfoProductos, getInfoTienda, getInfoTiendas, getInfoTodasCategorias,
+    getProductosRelacionados, AfiliarCliente, crearProducto, crearPlato,
+    crearOferta, crearFactura, crearEvento, crearCategoria,
+    updateProducto, updatePlato, updateOferta, updateEvento, 
+    updateCategoria, deleteProducto, deletePlato, deleteOferta, 
+    deleteEvento, deleteCategoria } = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
