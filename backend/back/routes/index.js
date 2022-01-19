@@ -8,7 +8,7 @@ const { getInfoCategoria, getInfoCategorias, getSubCategorias,
     crearOferta, crearFactura, crearEvento, crearCategoria,
     updateProducto, updatePlato, updateOferta, updateEvento, 
     updateCategoria, deleteProducto, deletePlato, deleteOferta, 
-    deleteEvento, deleteCategoria } = require('../controllers/index.controller');
+    deleteEvento, deleteCategoria, getCiudades, getSuperCategorias } = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
@@ -28,6 +28,8 @@ router.get('/getsubcategorias/:id', getSubCategorias);
 router.get('/getinfooferta/:id', getInfoOferta);
 router.get('/getinfoevento/:id', getInfoEvento);
 router.get('/getinfoplato/:id', getInfoPlato);
+router.get('/getciudades', getCiudades);
+router.get('/getsupercategorias', getSuperCategorias);
 //Posts
 router.post('/afiliarcliente', AfiliarCliente);
 router.post('/crearfactura', crearFactura);

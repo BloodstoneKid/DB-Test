@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
-function AgregarPlato(){
+function AgregarEvento(){
     const [nombre, setNombre] = useState('');
-    const [tipo, setTipo] = useState('');
-    const [descripcion, setDescripcion] = useState('');
     const [fecha_ini, setFechaIni] = useState('');
     const [fecha_final, setFechaFinal] = useState('');
-    const [precio, setPrecio] = useState('');
+    const [descripcion, setDescripcion] = useState('');
 
     const id = 0;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const plato = { nombre, tipo, descripcion, fecha_ini, fecha_final, precio,  id } 
+        const evento = { fecha_ini, fecha_final, descripcion, nombre,  id } 
     
 
-    fetch('/crearplato', {
+    fetch('/crearevento', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(plato)
+      body: JSON.stringify(evento)
     });
  };
 
     return(<section>
-         <h2>Agregar Plato</h2>
+         <h2>Agregar evento</h2>
       <form onSubmit={handleSubmit}>
       <div class="card-body p-1">
         <label>Nombre:</label>
@@ -33,20 +31,6 @@ function AgregarPlato(){
           required 
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-        />
-        <label>Tipo:</label>
-        <input 
-          type="text" 
-          required 
-          value={tipo}
-          onChange={(e) => setTipo(e.target.value)}
-        />
-        <label>Descripcion:</label>
-        <input 
-          type="text" 
-          required 
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
         />
         <label>Fecha de inicio:</label>
         <input 
@@ -62,12 +46,12 @@ function AgregarPlato(){
           value={fecha_final}
           onChange={(e) => setFechaFinal(e.target.value)}
         />
-        <label>Precio:</label>
+        <label>Descripcion:</label>
         <input 
-          type="number" 
+          type="text" 
           required 
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
+          value={descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
         />
         <button>Crear</button>
         </div>
@@ -75,4 +59,4 @@ function AgregarPlato(){
     </section>);
 }
 
-export default AgregarPlato;
+export default AgregarEvento;

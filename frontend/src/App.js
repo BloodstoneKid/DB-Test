@@ -10,7 +10,8 @@ import EditarCatalogo from './components/admin/EditarCatalogo';
 import InfoTiendas from './components/admin/InfoTiendas';
 import InfoTienda from './components/admin/InfoTienda';
 import EditarMenu from './components/admin/EditarMenu';
-//import oferta??
+import EditarListaOfertas from './components/admin/EditarListaOfertas';
+import EditarListaEventos from './components/admin/EditarListaEventos';
 import VerFacturas from './components/admin/VerFacturas';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
@@ -30,6 +31,8 @@ function App() {
             <Route path="/listacatalogos" exact element={<EditarCatalogo/>} />
             <Route path="/infotiendas" exact element={<InfoTiendas/>} />
             <Route path="/infotienda" exact element={<InfoTienda/>} />
+            <Route path="/listaofertas" exact element={<EditarListaOfertas/>} />
+            <Route path="/listaeventos" exact element={<EditarListaEventos/>} />
             <Route path="/menutienda" exact element={<EditarMenu/>} />
             <Route path="/facturastienda" exact element={<VerFacturas/>} />
           </Routes>
