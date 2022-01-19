@@ -16,7 +16,20 @@ function ListaEventosCliente(){
     };
 
     return(<section>
-        {items.map(item =>(empty))}
+        {items.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                         <p class="card-text">Desde: {item.fecha_ini}</p>
+                         <p class="card-text">Hasta: {item.fecha_final}</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
     </section>);
 
 }

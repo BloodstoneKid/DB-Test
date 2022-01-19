@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
+import EditarProducto from './EditarProducto';
+import AgregarProducto from './AgregarPlato';
 
 function CatalogoCiudadAdmin(){
     useEffect( () => {
@@ -16,7 +18,28 @@ function CatalogoCiudadAdmin(){
     };
 
     return(<section>
-        {items.map(item =>(empty))}
+        {items.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         {item.imagen}
+                         <p class="card-text">Caracteristicas: {item.caracteristicas}</p>
+                         <p class="card-text">Precio: {item.precio}</p>
+                         <p class="card-text">Colores: {item.colores}</p>
+                         <p class="card-text">Instrucciones: {item.instrucciones}</p>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                         <p class="card-text">Ancho: {item.ancho}</p>
+                         <p class="card-text">Largo: {item.largo}</p>
+                         <p class="card-text">Requiere montaje?: {item.requiere_montaje}</p>
+                         <EditarProducto/>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
+        <AgregarProducto/>
     </section>);
 
 }

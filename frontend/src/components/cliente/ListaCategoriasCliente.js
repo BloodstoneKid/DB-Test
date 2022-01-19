@@ -15,7 +15,18 @@ function ListaCategoriasCliente(){
         setItems(items);
     };
     return(<section>
-        {items.map(item =>(empty))}
+        {items.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
     </section>);
 
 }

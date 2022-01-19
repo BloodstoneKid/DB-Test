@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const { getInfoCategoria, getInfoCategorias, getSubCategorias,
-    getInfoEvento, getInfoEventos, getInfoFacturas, getInfoMenu,
+    getInfoEvento, getInfoEventos, getInfoFacturas, getInfoDetalleFactura, getInfoMenu,
     getInfoOferta, getInfoOfertas, getInfoPlato, getInfoProducto,
     getInfoProductos, getInfoTienda, getInfoTiendas, getInfoTodasCategorias,
     getProductosRelacionados, AfiliarCliente, crearProducto, crearPlato,
@@ -19,6 +19,7 @@ router.get('/getinfoofertas/:id', getInfoOfertas);
 router.get('/getinfoeventos/:id', getInfoEventos);
 router.get('/getinfomenu/:id', getInfoMenu);
 router.get('/getinfofacturas/:id', getInfoFacturas);
+router.get('/getinfodetallefactura/:id',getInfoDetalleFactura);
 router.get('/getinfotienda/:id', getInfoTienda);
 router.get('/getinfoproducto/:id', getInfoProducto);
 router.get('/getproductosrelacionados/:id', getProductosRelacionados);

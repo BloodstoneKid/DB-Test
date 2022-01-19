@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
+import EditarCategoria from './EditarCategoria';
+import AgregarCategoria from './AgregarCategoria';
 
 function EditarListaCategorias(){
     useEffect( () => {
@@ -14,7 +16,20 @@ function EditarListaCategorias(){
         setItems(items);
     };
     return(<section>
-        {items.map(item =>(empty))}
+        {items.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                         <EditarCategoria/>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
+        <AgregarCategoria/>
     </section>);
 
 }

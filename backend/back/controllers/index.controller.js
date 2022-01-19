@@ -14,13 +14,11 @@ const getInfoTiendas = async (req, res) => {
 }
 const getInfoProductos = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Producto INNER JOIN AMY_Catalogo ON AMY_Producto.Catalogo_id_catalogo = AMY_Catalogo.id_catalogo INNER JOIN AMY_Region ON AMY_Catalogo.Region_id_region = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoCategorias = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Categoria INNER JOIN AMY_P_C ON AMY_Categoria.id_categoria = AMY_P_C.categoria_id_categoria INNER JOIN AMY_Producto ON AMY_P_C.producto_id_producto = AMY_Producto.id_producto INNER JOIN AMY_Catalogo ON AMY_Producto.Catalogo_id_catalogo = AMY_Catalogo.id_catalogo INNER JOIN AMY_Region ON AMY_Catalogo.Region_id_region = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
@@ -30,73 +28,66 @@ const getInfoTodasCategorias = async (req, res) => {
 }
 const getInfoOfertas = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Descuento INNER JOIN AMY_D_C ON AMY_Descuento.id_descuento = AMY_D_C.Descuento_id_descuento INNER JOIN AMY_Categoria ON AMY_Categoria.id_categoria = AMY_D_C.categoria_id_categoria INNER JOIN AMY_P_C ON AMY_Categoria.id_categoria = AMY_P_C.categoria_id_categoria INNER JOIN AMY_Producto ON AMY_P_C.producto_id_producto = AMY_Producto.id_producto INNER JOIN AMY_Catalogo ON AMY_Producto.Catalogo_id_catalogo = AMY_Catalogo.id_catalogo INNER JOIN AMY_Region ON AMY_Catalogo.Region_id_region = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoEventos = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Evento INNER JOIN AMY_Tienda ON AMY_Evento.Tienda_id_tienda = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoMenu = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
-    const response = await pool.query('SELECT * FROM AMY_Menu_mes INNER JOIN AMY_Tienda ON AMY_Menu_mes.Tienda_id_tienda = $1;',[id]);
+    const response = await pool.query('SELECT * FROM AMY_Plato INNER JOIN AMY_Menu_mes ON AMY_Plato.id_plato = AMY_Menu_mes.Plato_id_plato INNER JOIN AMY_Tienda ON AMY_Menu_mes.Tienda_id_tienda = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoFacturas = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Factura INNER JOIN AMY_caja ON AMY_Factura.caja_id_caja = AMY_caja.id_caja INNER JOIN AMY_Tienda ON AMY_caja.Tienda_id_tienda = $1;',[id]);
+    res.end(JSON.stringify(response.rows));
+}
+const getInfoDetalleFactura = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const response = await pool.query('SELECT * FROM AMY_Det_factura INNER JOIN AMY_Factura ON $1 = AMY_Det_factura.Factura_id_factura INNER JOIN AMY_Producto ON AMY_Det_factura.Catalogo_id_catalogo = AMY_Producto.Catalogo_id_catalogo;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoTienda = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Tienda WHERE AMY_Tienda.id_tienda = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoProducto = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Producto WHERE AMY_Producto.id_producto = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getProductosRelacionados = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT id_producto FROM AMY_Producto INNER JOIN AMY_Relacion ON (AMY_Producto.id_producto = AMY_Relacion.producto_id_producto) OR (AMY_Producto.id_producto = AMY_Relacion.producto_2_id_producto) INNER JOIN AMY_Producto ON ($1 = AMY_Relacion.producto_id_producto) OR ($1 = AMY_Relacion.producto_2_id_producto);',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoCategoria = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Categoria WHERE AMY_Categoria.id_categoria = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getSubCategorias = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Categoria INNER JOIN AMY_Categoria ON AMY_Categoria.fk_categoria = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoOferta = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Descuento WHERE AMY_Descuento.id_descuento = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoEvento = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Evento WHERE AMY_Evento.id_evento = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getInfoPlato = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('SELECT * FROM AMY_Plato WHERE AMY_Plato.id_plato = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
@@ -216,31 +207,26 @@ const updateProducto = async (req, res) => {
 
 const deleteCategoria = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('DELETE FROM AMY_Categoria WHERE AMY_Categoria.id_categoria = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const deleteProducto = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('DELETE FROM AMY_Producto WHERE AMY_Producto.id_producto = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const deletePlato = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('DELETE FROM AMY_Plato WHERE AMY_Plato.id_plato = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const deleteOferta = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('DELETE FROM AMY_Descuento WHERE AMY_Descuento.id_descuento = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const deleteEvento = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { id } = req.body;
     const response = await pool.query('DELETE FROM AMY_Evento WHERE AMY_Evento.id_evento = $1;',[id]);
     res.end(JSON.stringify(response.rows));
 }
@@ -255,6 +241,7 @@ module.exports = {
     getInfoEvento,
     getInfoEventos,
     getInfoFacturas,
+    getInfoDetalleFactura,
     getInfoMenu,
     getInfoOferta,
     getInfoOfertas,

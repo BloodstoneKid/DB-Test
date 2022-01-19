@@ -6,6 +6,7 @@ function Home(){
  
     return(<section>
         <div>
+            HOME
             <ListaTiendasHome/>
         </div>
     </section>);

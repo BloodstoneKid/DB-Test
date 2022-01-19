@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
+import EditarPlato from './EditarPlato';
+import AgregarPlato from './AgregarPlato';
 
 function EditarMenu(){
     useEffect( () => {
@@ -16,7 +18,22 @@ function EditarMenu(){
     };
 
     return(<section>
-        {items.map(item =>(empty))}
+        {items.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         <p class="card-text">Tipo: {item.tipo}</p>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                         <p class="card-text">Precio: {item.precio}</p>
+                        <EditarPlato/>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
+        <AgregarPlato/>
     </section>);
 
 }

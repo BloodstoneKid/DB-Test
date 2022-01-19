@@ -3,11 +3,11 @@ import '../Sections.css';
 
 function Categoria(){
     useEffect( () => {
-        fetchItems();
+        fetchItems1();
+        fetchItems2();
     }, []);
 
-    const [items1, setItems] = useState([]);
-    const [items2, setItems] = useState([]);
+    const [items1, items2, setItems] = useState([]);
     const id = 0;
 
     const fetchItems1 = async () => {
@@ -22,7 +22,18 @@ function Categoria(){
     };
 
     return(<section>
-        {items1.map(item =>(empty))}
+        {items1.map(item =>(
+             <div class="container-fluid p-3 w-50">
+             <div class="card-deck">
+                 <div class="card">
+                     <div class="card-body p-1">
+                         <h6 class="card-title">{item.nombre}</h6>
+                         <p class="card-text">Descripcion: {item.descripcion}</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+        ))}
     </section>);
 
 }

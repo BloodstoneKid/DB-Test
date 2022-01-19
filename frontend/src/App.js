@@ -12,27 +12,27 @@ import InfoTienda from './components/admin/InfoTienda';
 import EditarMenu from './components/admin/EditarMenu';
 //import oferta??
 import VerFacturas from './components/admin/VerFacturas';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
        <Router>
       <div className="App">
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/tienda" exact component={Tienda} />
-            <Route path="/categoria" exact component={Categoria} />
-            <Route path="/producto" exact component={Producto} />
-            <Route path="/carrito" exact component={Carrito} />
-            <Route path="/homeadmin" exact component={HomeAdmin} />
-            <Route path="/listacategorias" exact component={EditarListaCategorias} />
-            <Route path="/listacatalogos" exact component={EditarCatalogo} />
-            <Route path="/infotiendas" exact component={InfoTiendas} />
-            <Route path="/infotienda" exact component={InfoTienda} />
-            <Route path="/menutienda" exact component={EditarMenu} />
-            <Route path="/facturastienda" exact component={VerFacturas} />
-          </Switch>
+          <Routes>
+            <Route path="/" exact element={<Home/>} />
+            <Route path="/tienda" exact element={<Tienda/>} />
+            <Route path="/categoria" exact element={<Categoria/>} />
+            <Route path="/producto" exact element={<Producto/>} />
+            <Route path="/carrito" exact element={<Carrito/>} />
+            <Route path="/homeadmin" exact element={<HomeAdmin/>} />
+            <Route path="/listacategorias" exact element={<EditarListaCategorias/>} />
+            <Route path="/listacatalogos" exact element={<EditarCatalogo/>} />
+            <Route path="/infotiendas" exact element={<InfoTiendas/>} />
+            <Route path="/infotienda" exact element={<InfoTienda/>} />
+            <Route path="/menutienda" exact element={<EditarMenu/>} />
+            <Route path="/facturastienda" exact element={<VerFacturas/>} />
+          </Routes>
       </div>
     </Router>
     </div>
