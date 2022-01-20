@@ -22,19 +22,19 @@ function App() {
       <div className="App">
           <Routes>
             <Route path="/" exact element={<Home/>} />
-            <Route path="/tienda" exact element={<Tienda/>} />
-            <Route path="/categoria" exact element={<Categoria/>} />
-            <Route path="/producto" exact element={<Producto/>} />
+            <Route path="/tienda/:id" exact element={<Tienda/>} />
+            <Route path="/categoria/:id" exact element={<Categoria/>} />
+            <Route path="/producto/:id" exact element={<Producto/>} />
             <Route path="/carrito" exact element={<Carrito/>} />
             <Route path="/homeadmin" exact element={<HomeAdmin/>} />
             <Route path="/listacategorias" exact element={<EditarListaCategorias/>} />
             <Route path="/listacatalogos" exact element={<EditarCatalogo/>} />
             <Route path="/infotiendas" exact element={<InfoTiendas/>} />
-            <Route path="/infotienda" exact element={<InfoTienda/>} />
-            <Route path="/listaofertas" exact element={<EditarListaOfertas/>} />
-            <Route path="/listaeventos" exact element={<EditarListaEventos/>} />
-            <Route path="/menutienda" exact element={<EditarMenu/>} />
-            <Route path="/facturastienda" exact element={<VerFacturas/>} />
+            <Route path="/infotienda/:id" exact element={<InfoTienda/>} />
+            <Route path="/listaofertas/:id" exact element={<EditarListaOfertas/>} />
+            <Route path="/listaeventos/:id" exact element={<EditarListaEventos/>} />
+            <Route path="/menutienda/:id" exact element={<EditarMenu/>} />
+            <Route path="/facturastienda/:id" exact element={<VerFacturas/>} />
           </Routes>
       </div>
     </Router>

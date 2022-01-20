@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import '../Sections.css';
 import ListaCategoriasCliente from './ListaCategoriasCliente';
 import ListaProductosCliente from './ListaProductosCliente';
 import ListaEventosCliente from './ListaEventosCliente';
 import ListaOfertasCliente from './ListaOfertasCliente';
+import MenuTiendaCliente from './MenuTiendaCliente';
 
 function Tienda(){
     useEffect( () => {
@@ -11,7 +13,7 @@ function Tienda(){
     }, []);
 
     const [items, setItems] = useState([]);
-    const id = 0;
+    const { id } = useParams();
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfotienda/${id}`);
@@ -36,15 +38,16 @@ function Tienda(){
                          <p class="card-text">Direccion: {item.direccion}</p>
                          <p class="card-text">Telefono: {item.telefono}</p>
                          <p class="card-text">Areas infantiles: {item.ubicacion_area}</p>
+                        <ListaCategoriasCliente idRegion={ item.Region_id_region }/>
+                        <ListaProductosCliente idRegion={ item.Region_id_region }/>
+                        <ListaOfertasCliente idRegion={ item.Region_id_region }/>
+                        <ListaEventosCliente idTienda={ id }/>
+                        <MenuTiendaCliente idTienda={ id }/>
                      </div>
                  </div>
              </div>
          </div>
         ))}
-        <ListaCategoriasCliente/>
-        <ListaProductosCliente/>
-        <ListaEventosCliente/>
-        <ListaOfertasCliente/>
     </section>);
 
 }

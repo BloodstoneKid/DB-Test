@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../Sections.css';
-import Afiliar from './Afiliar';
-import LoginCliente from './LoginCliente';
-import FormaPago from './FormaPago';
+import SeleccionarCliente from './SeleccionarCliente';
 import { addToCart, clearCart, delFromCart } from "./elementos_carrito/shoppingAction";
 import CartItem from "./elementos_carrito/CartItem";
 import Producto from './Producto';
@@ -39,10 +37,8 @@ function Carrito(){
           />
         ))}
       </article>
+      <button onClick={<SeleccionarCliente/>}>Reservar</button>
     </div>
-        <Afiliar/>
-        <LoginCliente/>
-        <FormaPago/>
     </section>);
 
 }

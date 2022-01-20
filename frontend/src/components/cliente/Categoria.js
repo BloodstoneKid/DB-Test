@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import '../Sections.css';
 
 function Categoria(){
@@ -8,7 +9,7 @@ function Categoria(){
     }, []);
 
     const [items1, items2, setItems] = useState([]);
-    const id = 0;
+    const { id } = useParams();
 
     const fetchItems1 = async () => {
         const data1 = await fetch(`/getinfocategoria/${id}`);

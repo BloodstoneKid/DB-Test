@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
-function ListaEventosCliente(){
+function ListaEventosCliente({idTienda}){
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
-    const id = 0;
+    const id = idTienda;
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfoeventos/${id}`);

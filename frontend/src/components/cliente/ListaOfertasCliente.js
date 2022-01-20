@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
-function ListaOfertasCliente(){
+function ListaOfertasCliente({idRegion}){
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
-    const id = 0;
+    const id = idRegion;
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfoofertas/${id}`);

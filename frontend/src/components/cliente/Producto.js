@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 import '../Sections.css';
 
 function Producto(){
     useEffect( () => {
-        fetchItems();
+        fetchItems1();
     }, []);
 
     const [items1, setItems] = useState([]);
     const [items2, setItems] = useState([]);
-    const id = 0;
+    const { id } = useParams();
 
     const fetchItems1 = async () => {
         const data1 = await fetch(`/getinfoproducto/${id}`);

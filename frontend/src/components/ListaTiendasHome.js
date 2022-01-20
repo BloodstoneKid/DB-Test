@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Sections.css';
 
 function ListaTiendasHome(){
@@ -15,13 +16,14 @@ function ListaTiendasHome(){
     };
 
     return(<section>
-        LISTA TIENDAS HOME
         {items.map(item =>(
              <div class="container-fluid p-3 w-50">
              <div class="card-deck">
                  <div class="card">
                      <div class="card-body p-1">
+                        <Link to={`/tienda/${item.id_tienda}`}>
                          <h6 class="card-title">{item.nombre}</h6>
+                         </Link>
                          <p class="card-text">Ciudad: {item.AMY_Region.nombre}</p>
                          <p class="card-text">Horario: Desde X Hasta Y</p>
                          <p class="card-text">Fecha de apertura: {item.fecha_apertura}</p>

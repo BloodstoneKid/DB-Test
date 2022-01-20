@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
-function MenuTiendaCliente(){
+function MenuTiendaCliente({idTienda}){
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
-    const id = 0;
+    const id = idTienda;
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfomenu/${id}`);

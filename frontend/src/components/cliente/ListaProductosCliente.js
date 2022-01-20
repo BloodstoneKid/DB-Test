@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../Sections.css';
 
-function ListaProductosCliente(){
+function ListaProductosCliente({idRegion}){
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
-    const id = 0;
+    const id = idRegion;
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfoproductos/${id}`);
@@ -25,6 +26,7 @@ function ListaProductosCliente(){
               <div class="new-arrivals-content">
                 <div class="row">
                   <div class="col-md-3 col-sm-4">
+                  <Link to={`/producto/${item.id_producto}`}>
                     <div class="single-new-arrival">
                       <div class="single-new-arrival-bg">
                         <img src="{item.imagen}" alt="new-arrivals images" />
@@ -43,6 +45,7 @@ function ListaProductosCliente(){
                       <h4><a href="# LINK A PRODUCTO">{item.nombre}</a></h4>
                       <p class="arrival-product-price">{item.precio}$</p>
                     </div>
+                    </Link>
                   </div>
                   </div>
               </div>

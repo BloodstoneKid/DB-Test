@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
-function LoginCliente(){
+function SeleccionarCliente(){
     
 
     return(<section>
@@ -10,4 +10,4 @@ function LoginCliente(){
 
 }
 
-export default LoginCliente;
+export default SeleccionarCliente;
