@@ -8,12 +8,17 @@ import ListaOfertasCliente from './ListaOfertasCliente';
 import MenuTiendaCliente from './MenuTiendaCliente';
 
 function Tienda(){
+    const { id } = useParams();
+
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
+<<<<<<< Updated upstream
     const { id } = useParams();
+=======
+>>>>>>> Stashed changes
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfotienda/${id}`);
