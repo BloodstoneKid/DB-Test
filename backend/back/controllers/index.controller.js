@@ -130,7 +130,15 @@ const getRegionCatalogo = async (req, res) => {
     const response = await pool.query('SELECT * FROM AMY_Region INNER JOIN AMY_Catalogo ON AMY_Region.id_region = AMY_Catalogo.Region_id_region = $1 ;',[id]);
     res.end(JSON.stringify(response.rows));
 }
+const getSearch = async (req, res) => {
+    try{
+        const { searchQuery } = req.query;
 
+        const producto = await pool.query('SELECT * FROM AMY_Producto WHERE AMY_Producto.nombre LIKE $1;', [`%${searchQuery}%`]);
+    } catch (err){
+        console.error(err.message);
+    }
+}
 
 
 

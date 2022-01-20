@@ -24,6 +24,9 @@ function EditarListaCategorias(){
     };
     return(
         <div>
+            <br></br>
+            <Link to='/crearcategoria'><Button color = "success">Agregar Categoria</Button></Link>
+            <br></br> <br></br>
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
@@ -44,7 +47,7 @@ function EditarListaCategorias(){
                         <Table.Cell>{item.nivel}</Table.Cell>
                         <Table.Cell>{item.descripcion}</Table.Cell>
                         <Table.Cell>{fetchItems2(item.fk_categoria)}</Table.Cell>
-                        <Link to='/updatecategoria'><Table.Cell><Button onClick={() => setData(item)}>Editar</Button></Table.Cell></Link>
+                        <Link to='/updatecategoria/${item.id_categoria}'><Table.Cell><Button>Editar</Button></Table.Cell></Link>
                         <Table.Cell><Button onClick={() => setData(item)}>Eliminar</Button></Table.Cell>
                     </Table.Row>
                     ))}

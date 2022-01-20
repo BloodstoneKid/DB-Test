@@ -24,7 +24,7 @@ function AgregarCategoria(){
         e.preventDefault();
         const categoria = { nombre, nivel, descripcion, fk_categoria } 
 
-    fetch(`/crearcategoria/`, {
+    fetch(`/crearcategoria`, {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(categoria)

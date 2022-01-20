@@ -24,7 +24,6 @@ function Producto(){
 
     return(<section>
 
-
         {items1.map(item =>(
             <section>
             <div class="container">
@@ -80,7 +79,7 @@ function Producto(){
                       <div class="single-populer-product-img mt40">
                         <img src="{item.imagen}" alt="populer-products images" />
                       </div>
-                      <h2><a href="#">{item.nombre}</a></h2>
+                      <h2><a href="/getinfoproducto/${item.id_producto}">{item.nombre}</a></h2>
                       <div class="single-populer-products-para">
                         <p>{item.descripcion}</p>
                       </div>
