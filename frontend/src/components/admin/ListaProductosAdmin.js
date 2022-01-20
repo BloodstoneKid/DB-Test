@@ -18,6 +18,9 @@ function ListaProductosAdmin(){
 
     return (
         <div>
+            <br></br>
+            <Link to='/crearproducto'><Button color = "success">Agregar Producto</Button></Link>
+            <br></br> <br></br>
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
@@ -45,8 +48,8 @@ function ListaProductosAdmin(){
                         <Table.Cell>{item.montaje}</Table.Cell>
                         <Table.Cell>{item.ancho}x{item.largo}</Table.Cell>
                         <Table.Cell>{item.precio}$</Table.Cell>
-                        <Link to='/updateproducto/'><Table.Cell><Button onClick={() => setData(item)}>Editar</Button></Table.Cell></Link>
-                        <Table.Cell><Button onClick={() => setData(item)}>Eliminar</Button></Table.Cell>
+                        <Link to='/updateproducto/${item.id_producto}'><Table.Cell><Button>Editar</Button></Table.Cell></Link>
+                        <Table.Cell><Button onClick={() => deleteProducto(item)}>Eliminar</Button></Table.Cell>
                     </Table.Row>
                     ))}
                 </Table.Body>
