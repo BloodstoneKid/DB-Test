@@ -15,6 +15,15 @@ function EditarListaCategorias(){
         const items = await data.json();
         setItems(items);
     };
+    const deleteItems = async () => {
+        const response = await fetch('/deletecategoria', {
+       method: 'DELETE', 
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: null
+   });
+    }
     return(<section>
         {items.map(item =>(
              <div class="container-fluid p-3 w-50">
@@ -24,6 +33,7 @@ function EditarListaCategorias(){
                          <h6 class="card-title">{item.nombre}</h6>
                          <p class="card-text">Descripcion: {item.descripcion}</p>
                          <EditarCategoria/>
+                         <button onClick={deleteItems}>Eliminar</button>
                      </div>
                  </div>
              </div>

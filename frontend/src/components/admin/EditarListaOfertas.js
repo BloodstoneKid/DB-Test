@@ -16,6 +16,15 @@ function EditarListaOfertas(){
         const items = await data.json();
         setItems(items);
     };
+    const deleteItems = async () => {
+        const response = await fetch('/deletecategoria', {
+       method: 'DELETE', 
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: null
+   });
+    }
     return(<section>
         {items.map(item =>(
              <div class="container-fluid p-3 w-50">
@@ -27,6 +36,7 @@ function EditarListaOfertas(){
                          <p class="card-text">Fecha inicio: {item.fecha_inicio}</p>
                          <p class="card-text">Fecha fin: {item.fecha_fin}</p>
                          <EditarOferta/>
+                         <button onClick={deleteItems}>Eliminar</button>
                      </div>
                  </div>
              </div>

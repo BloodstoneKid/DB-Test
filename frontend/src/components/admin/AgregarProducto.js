@@ -12,12 +12,23 @@ function AgregarProducto(){
     const [ancho, setAncho] = useState('');
     const [largo, setLargo] = useState('');
     const [requiere_montaje, setMontaje] = useState('');
+    const [disenador, setDisenador] = useState('');
 
     const id = 0;
 
+    useEffect( () => {
+      fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+      const data = await fetch('/getdisenador');
+      const items = await data.json();
+      setItems(items);
+  };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const producto = { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje,  id } 
+        const producto = { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje,  id, disenador } 
     
 
     fetch('/crearproducto', {
@@ -101,6 +112,14 @@ function AgregarProducto(){
        onChange={(e) => setMontaje(e.target.value)}>
             <option value="true">Si</option>
             <option value="false">No</option>
+       </select>
+       <label>Diseñador:</label>
+       <select name="disenador" 
+       id="disenador" 
+       onChange={(e) => setDisenador(e.target.value)}>
+        {items.map(item =>(
+            <option value={item.id_dise}>{item.nombre} {item.apellido}</option>
+        ))}
        </select>
         <button>Crear</button>
         </div>

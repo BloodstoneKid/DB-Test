@@ -58,7 +58,7 @@ const getInfoTienda = async (req, res) => {
 }
 const getInfoProducto = async (req, res) => {
     const id = parseInt(req.params.id);
-    const response = await pool.query('SELECT * FROM AMY_Producto WHERE AMY_Producto.id_producto = $1;',[id]);
+    const response = await pool.query('SELECT * FROM AMY_Producto WHERE AMY_Producto.id_producto = $1 INNER JOIN AMY_D_P ON AMY_Producto.id_producto = AMY_D_P.Producto_id_producto INNER JOIN AMY_Diseñador ON AMY_Diseñador.id_dise = AMY_D_P.Diseñador_id_dise;',[id]);
     res.end(JSON.stringify(response.rows));
 }
 const getProductosRelacionados = async (req, res) => {
@@ -99,7 +99,10 @@ const getSuperCategorias = async (req, res) => {
     const response = await pool.query('SELECT id_categoria, nombre FROM AMY_Categoria WHERE AMY_Categoria.nivel = 1;');
     res.end(JSON.stringify(response.rows));
 }
-
+const getDisenador = async (req, res) => {
+    const response = await pool.query('SELECT * FROM AMY_Diseñador;');
+    res.end(JSON.stringify(response.rows));
+}
 //Posts
 const AfiliarCliente = async (req, res) => {
     const { identificacion,nombre,apellido,
@@ -107,7 +110,10 @@ const AfiliarCliente = async (req, res) => {
     const response = await pool.query('INSERT INTO AMY_Cliente (id_cliente, nombre, seg_nombre, apellido, seg_apellido, fecha_nacimiento, Region_id_region) VALUES ($1, $2, $4, $3, $5, $6, $7); INSERT INTO AMY_Afiliado (fecha, cliente_id_cliente) VALUES ($8, $1);', [identificacion,nombre,apellido,
         segnombre,segapellido,fechanac,ciudad, fechahoy]);
 }
-
+const AgregarHijo = async (req, res) => {
+    const { nombre, apellido, genero, fechanac, id  } = req.body;
+    const response = await pool.query('INSERT INTO AMY_Hijo (nombre, apellido, genero, fecha_nacimiento, cliente_id_cliente) VALUES ($1, $2, $3, $4, $5);', [nombre, apellido, genero, fechanac, id]);
+}
 const crearCategoria = async (req, res) => {
     const { nombre, nivel, descripcion, fk_categoria  } = req.body;
     const response = await pool.query('INSERT INTO AMY_Categoria (nombre, nivel, descripcion, fk_categoria) VALUES ($1, $2, $3, $4);', [nombre, nivel, descripcion, fk_categoria]);
@@ -119,8 +125,8 @@ const crearPlato = async (req, res) => {
 }
 
 const crearProducto = async (req, res) => {
-    const { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo } = req.body;
-    const response = await pool.query('INSERT INTO AMY_Producto (nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);', [nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo]);
+    const { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo, disenador } = req.body;
+    const response = await pool.query('INSERT INTO AMY_Producto (nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id; INSERT INTO AMY_D_P(Diseñador_id_dise, Producto_id_producto) VALUES($12, id)', [nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo, disenador]);
 }
 
 const crearEvento = async (req, res) => {
@@ -135,7 +141,7 @@ const crearMenu = async (req, res) => {
 
 const crearOferta = async (req, res) => {
     const { porcentaje, fecha_inicio, fecha_fin, categoria } = req.body;
-    const response = await pool.query('INSERT INTO AMY_Descuento (porcentaje, fecha_inicio, fecha_fin) VALUES ($1, $2, $3);', [porcentaje, fecha_inicio, fecha_fin]);
+    const response = await pool.query('INSERT INTO AMY_Descuento (porcentaje, fecha_inicio, fecha_fin) VALUES ($1, $2, $3) RETURNING id; INSERT INTO AMY_D_C(Descuento_id_descuento, Categoria_id_categoria) VALUES(id, $4);', [porcentaje, fecha_inicio, fecha_fin, categoria]);
 }
 
 const crearFactura = async (req, res) => {
@@ -263,6 +269,7 @@ module.exports = {
     getProductosRelacionados,
     getSubCategorias,
     AfiliarCliente,
+    AgregarHijo,
     crearCategoria,
     crearEvento,
     crearFactura,
@@ -283,5 +290,6 @@ module.exports = {
     deletePlato,
     deleteProducto,
     getCiudades,
-    getSuperCategorias
+    getSuperCategorias,
+    getDisenador
 }

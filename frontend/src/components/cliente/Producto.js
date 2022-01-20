@@ -38,6 +38,7 @@ function Producto(){
                          <p class="card-text">Ancho: {item.ancho}</p>
                          <p class="card-text">Largo: {item.largo}</p>
                          <p class="card-text">Requiere montaje?: {item.requiere_montaje}</p>
+                         <p class="card-text">Diseñador: {item.AMY_Diseñador.nombre} {item.AMY_Diseñador.apellido}</p>
                          <button onClick={() => addToCart(item.id_producto)}>Agregar</button>
                      </div>
                  </div>

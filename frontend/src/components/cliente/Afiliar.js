@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
+import AgregarHijo from './AgregarHijo';
 
 function Afiliar(){
     const [identificacion, setIdentificacion] = useState('');
@@ -92,6 +93,7 @@ function Afiliar(){
         <button>Afiliar</button>
         </div>
       </form>
+      <AgregarHijo/>
     </section>);
 }
 

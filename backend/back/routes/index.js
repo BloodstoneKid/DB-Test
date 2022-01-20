@@ -4,11 +4,11 @@ const { getInfoCategoria, getInfoCategorias, getSubCategorias,
     getInfoEvento, getInfoEventos, getInfoFacturas, getInfoDetalleFactura, getInfoMenu,
     getInfoOferta, getInfoOfertas, getInfoPlato, getInfoProducto,
     getInfoProductos, getInfoTienda, getInfoTiendas, getInfoTodasCategorias,
-    getProductosRelacionados, AfiliarCliente, crearProducto, crearPlato,
+    getProductosRelacionados, AfiliarCliente, AgregarHijo, crearProducto, crearPlato,
     crearOferta, crearFactura, crearEvento, crearCategoria,
     updateProducto, updatePlato, updateOferta, updateEvento, 
     updateCategoria, deleteProducto, deletePlato, deleteOferta, 
-    deleteEvento, deleteCategoria, getCiudades, getSuperCategorias } = require('../controllers/index.controller');
+    deleteEvento, deleteCategoria, getCiudades, getSuperCategorias, getDisenador } = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
@@ -30,8 +30,10 @@ router.get('/getinfoevento/:id', getInfoEvento);
 router.get('/getinfoplato/:id', getInfoPlato);
 router.get('/getciudades', getCiudades);
 router.get('/getsupercategorias', getSuperCategorias);
+router.get('/getdisenador', getDisenador);
 //Posts
 router.post('/afiliarcliente', AfiliarCliente);
+router.post('/agregarhijo', AgregarHijo);
 router.post('/crearfactura', crearFactura);
 router.post('/crearcategoria', crearCategoria);
 router.post('/crearproducto', crearProducto);

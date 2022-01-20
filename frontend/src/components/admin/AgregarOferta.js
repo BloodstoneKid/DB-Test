@@ -57,6 +57,14 @@ function AgregarOferta(){
           value={fecha_final}
           onChange={(e) => setFechaFinal(e.target.value)}
         />
+        <label>A que categoria?:</label>
+       <select name="categoria" 
+       id="categoria" 
+       onChange={(e) => setCategoria(e.target.value)}>
+        {items.map(item =>(
+            <option value={item.id_categoria}>{item.nombre}</option>
+        ))}
+       </select>
         <button>Crear</button>
         </div>
       </form>

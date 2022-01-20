@@ -17,6 +17,16 @@ function CatalogoCiudadAdmin(){
         setItems(items);
     };
 
+    const deleteItems = async () => {
+        const response = await fetch('/deleteproducto', {
+       method: 'DELETE', 
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: null
+   });
+    }
+
     return(<section>
         {items.map(item =>(
              <div class="container-fluid p-3 w-50">
@@ -34,6 +44,7 @@ function CatalogoCiudadAdmin(){
                          <p class="card-text">Largo: {item.largo}</p>
                          <p class="card-text">Requiere montaje?: {item.requiere_montaje}</p>
                          <EditarProducto/>
+                         <button onClick={deleteItems}>Eliminar</button>
                      </div>
                  </div>
              </div>
