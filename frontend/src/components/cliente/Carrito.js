@@ -16,7 +16,7 @@ function Carrito({arrayItems}){
           <ItemCarrito idProd = {prod}/>
         ))}
       </article>
-      <button onClick={<SeleccionarCliente/>}>Reservar</button>
+      <button onClick={<SeleccionarCliente listaProd={productos}/>}>Reservar</button>
     </div>
     </section>);
 

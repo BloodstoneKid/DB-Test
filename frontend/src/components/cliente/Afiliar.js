@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 import AgregarHijo from './AgregarHijo';
+import FormaPago from './FormaPago';
 
-function Afiliar(){
+function Afiliar({listaProd}){
     const [identificacion, setIdentificacion] = useState('');
     const [nombre, setNombre] = useState('');
     const [segnombre, setSegNombre] = useState('');
@@ -27,7 +28,8 @@ function Afiliar(){
     const handleSubmit = (e) => {
         e.preventDefault();
         const cliente = { identificacion,nombre,apellido,
-        segnombre,segapellido,fechanac,ciudad, fechahoy } 
+        segnombre,segapellido,fechanac,ciudad, fechahoy }
+        
     
 
     fetch('/afiliarcliente', {
@@ -35,6 +37,7 @@ function Afiliar(){
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cliente)
     });
+    <FormaPago listaProd={listaProd} comprador={identificacion}/>
  };
 
     return(<section>

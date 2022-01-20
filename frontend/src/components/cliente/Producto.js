@@ -8,7 +8,7 @@ function Producto({setItemCarrito}){
     }, []);
 
     const [items1, setItems] = useState([]);
-    const [items2, setItems] = useState([]);
+    const [items2] = useState([]);
     const { id } = useParams();
 
     const fetchItems1 = async () => {

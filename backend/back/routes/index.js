@@ -1,6 +1,54 @@
 const { Router } = require('express');
 const router = Router();
-//const {} = require('../controllers/index.controller');
+const {getInfoCategoria,
+    getInfoCategorias,
+    getInfoEvento,
+    getInfoEventos,
+    getInfoFacturas,
+    getInfoMenu,
+    getInfoOferta,
+    getInfoOfertas,
+    getInfoPlato,
+    getInfoProducto,
+    getInfoProductos,
+    getInfoSubcategorias,
+    getInfoTienda,
+    getInfoTiendas,
+    getInfoTodasCategorias,
+    getProductosRelacionados,
+    getRegion,
+    getRegionCatalogo,
+    getSearch,
+    getSubCategorias,
+    getSuperCategorias,
+    getDisenador,
+    getInfoDetalleFactura,
+    getCatalogo,
+    getCategoria,
+    getCiudades,
+    getClientes,
+    getInstrumento,
+    AfiliarCliente,
+    crearCategoria,
+    crearEvento,
+    crearFactura,
+    crearMenu,
+    crearOferta,
+    crearPlato,
+    crearProducto,
+    AgregarHijo,
+    updateCatalogo,
+    updateCategoria,
+    updateEvento,
+    updateMenu,
+    updateOferta,
+    updatePlato,
+    updateProducto,
+    deleteCategoria,
+    deleteEvento,
+    deleteOferta,
+    deletePlato,
+    deleteProducto} = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
@@ -11,6 +59,7 @@ router.get('/getinfoofertas/:id', getInfoOfertas);
 router.get('/getinfoeventos/:id', getInfoEventos);
 router.get('/getinfomenu/:id', getInfoMenu);
 router.get('/getinfofacturas/:id', getInfoFacturas);
+router.get('/getinfodetallefactura/:id',getInfoDetalleFactura);
 router.get('/getinfotienda/:id', getInfoTienda);
 router.get('/getinfoproducto/:id', getInfoProducto);
 router.get('/getproductosrelacionados/:id', getProductosRelacionados);
@@ -23,8 +72,14 @@ router.get('/getcategoria/:id', getCategoria);
 router.get('/getcatalogo/:id', getCatalogo);
 router.get('/getregion', getRegion);
 router.get('/getregioncatalogo', getRegionCatalogo);
+router.get('/getciudades', getCiudades);
+router.get('/getsupercategorias', getSuperCategorias);
+router.get('/getdisenador', getDisenador);
+router.get('/getclientes', getClientes);
+router.get('/getinstrumento/:id',getInstrumento);
 //Posts
 router.post('/afiliarcliente', AfiliarCliente);
+router.post('/agregarhijo', AgregarHijo);
 router.post('/crearfactura', crearFactura);
 router.post('/crearcategoria', crearCategoria);
 router.post('/crearproducto', crearProducto);

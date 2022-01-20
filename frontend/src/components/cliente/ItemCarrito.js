@@ -12,7 +12,7 @@ function ItemCarrito({idProd}){
   
     const fetchItems = async () => {
       const data = await fetch(`/getinfoproducto/${id}`);
-      const items = await data1.json();
+      const items = await data.json();
       setItems(items);
     };
   

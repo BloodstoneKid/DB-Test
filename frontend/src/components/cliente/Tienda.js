@@ -8,7 +8,6 @@ import ListaOfertasCliente from './ListaOfertasCliente';
 import MenuTiendaCliente from './MenuTiendaCliente';
 
 function Tienda(){
-    const { id } = useParams();
 
     useEffect( () => {
         fetchItems();

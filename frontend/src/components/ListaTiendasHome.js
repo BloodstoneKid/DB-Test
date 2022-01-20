@@ -21,11 +21,7 @@ function ListaTiendasHome(){
              <div class="card-deck">
                  <div class="card">
                      <div class="card-body p-1">
-<<<<<<< Updated upstream
-                        <Link to={`/tienda/${item.id_tienda}`}>
-=======
                          <Link to={`/tienda/${item.id_tienda}`}>
->>>>>>> Stashed changes
                          <h6 class="card-title">{item.nombre}</h6>
                          </Link>
                          <p class="card-text">Ciudad: {item.AMY_Region.nombre}</p>
