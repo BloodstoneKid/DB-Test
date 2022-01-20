@@ -17,17 +17,38 @@ function ListaProductosCliente(){
 
     return(<section>
         {items.map(item =>(
-             <div class="container-fluid p-3 w-50">
-             <div class="card-deck">
-                 <div class="card">
-                     <div class="card-body p-1">
-                         <h6 class="card-title">{item.nombre}</h6>
-                         {item.imagen}
-                     </div>
-                 </div>
-             </div>
-         </div>
-        ))}
+            <section id="new-arrivals" class="new-arrivals">
+            <div class="container">
+              <div class="section-header">
+                <h2>Productos</h2>
+              </div>
+              <div class="new-arrivals-content">
+                <div class="row">
+                  <div class="col-md-3 col-sm-4">
+                    <div class="single-new-arrival">
+                      <div class="single-new-arrival-bg">
+                        <img src="{item.imagen}" alt="new-arrivals images" />
+                        <div class="single-new-arrival-bg-overlay"></div>
+                        <div class="new-arrival-cart">
+                          <p>
+                            <span class="lnr lnr-cart"></span>
+                            <a href="# LINK A PRODUCTO">Más <span>  </span> información</a>
+                          </p>
+                          <p class="arrival-review pull-right">
+                            <span class="lnr lnr-heart"></span>
+                            <span class="lnr lnr-frame-expand"></span>
+                          </p>
+                        </div>
+                      </div>
+                      <h4><a href="# LINK A PRODUCTO">{item.nombre}</a></h4>
+                      <p class="arrival-product-price">{item.precio}$</p>
+                    </div>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+            ))}
     </section>);
 
 }

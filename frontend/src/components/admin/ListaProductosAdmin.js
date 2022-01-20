@@ -1,57 +1,58 @@
 import React from 'react';
-import '../Sections.css';
 import { Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
-
-function EditarListaCategorias(){
+function ListaProductosAdmin(){
     useEffect( () => {
         fetchItems();
     }, []);
 
     const [items, setItems] = useState([]);
+    const id = 0;
 
     const fetchItems = async () => {
-        const data = await fetch('/getinfotodascategorias');
+        const data = await fetch(`/getinfoproductos/${id}`);
         const items = await data.json();
         setItems(items);
     };
-    const fetchItems2 = async (id) => {
-        const data2 = await fetch(`/getcategoria/${id}`);
-        const items2 = await data2.json();
-        setItems(items2);
-        return items2.nombre;
-    };
-    return(
+
+    return (
         <div>
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Nombre</Table.HeaderCell>
-                        <Table.HeaderCell>Nivel</Table.HeaderCell>
+                        <Table.HeaderCell>Imagen</Table.HeaderCell>
                         <Table.HeaderCell>Descripcion</Table.HeaderCell>
-                        <Table.HeaderCell>Subcategoría</Table.HeaderCell>
+                        <Table.HeaderCell>Caracteristicas</Table.HeaderCell>
+                        <Table.HeaderCell>Colores</Table.HeaderCell>
+                        <Table.HeaderCell>Montaje</Table.HeaderCell>
+                        <Table.HeaderCell>Dimensiones(AxL)</Table.HeaderCell>
+                        <Table.HeaderCell>Precio</Table.HeaderCell>
                         <Table.HeaderCell> </Table.HeaderCell>
                         <Table.HeaderCell> </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
-            
                 <Table.Body>
                 {items.map(item => (
                     <Table.Row>
                         <Table.Cell>{item.nombre}</Table.Cell>
-                        <Table.Cell>{item.nivel}</Table.Cell>
+                        <Table.Cell>{item.imagen}</Table.Cell>
                         <Table.Cell>{item.descripcion}</Table.Cell>
-                        <Table.Cell>{fetchItems2(item.fk_categoria)}</Table.Cell>
-                        <Link to='/updatecategoria'><Table.Cell><Button onClick={() => setData(item)}>Editar</Button></Table.Cell></Link>
+                        <Table.Cell>{item.caracteristicas}</Table.Cell>
+                        <Table.Cell>{item.colores}</Table.Cell>
+                        <Table.Cell>{item.montaje}</Table.Cell>
+                        <Table.Cell>{item.ancho}x{item.largo}</Table.Cell>
+                        <Table.Cell>{item.precio}$</Table.Cell>
+                        <Link to='/updateproducto/'><Table.Cell><Button onClick={() => setData(item)}>Editar</Button></Table.Cell></Link>
                         <Table.Cell><Button onClick={() => setData(item)}>Eliminar</Button></Table.Cell>
                     </Table.Row>
                     ))}
                 </Table.Body>
-        </Table>
-    </div>);
-
+            </Table>
+        </div>
+    )
 }
 
-export default EditarListaCategorias;
+export default ListaProductosAdmin;

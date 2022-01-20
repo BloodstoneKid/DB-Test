@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, setState } from 'react';
 import '../Sections.css';
 
-function AgregarProducto(){
+function CrearProducto(){
+    useEffect( () => {
+        fetchItems();
+    }, []);
+
+    const [items, setItems] = useState([]);
+
+
     const [nombre, setNombre] = useState('');
-    const [imagen, setImagen] = useState('');
+    const [imagen, setNombre] = useState('');
     const [caracteristicas, setCaracteristicas] = useState('');
     const [precio, setPrecio] = useState('');
     const [colores, setColores] = useState('');
@@ -12,119 +19,86 @@ function AgregarProducto(){
     const [ancho, setAncho] = useState('');
     const [largo, setLargo] = useState('');
     const [requiere_montaje, setMontaje] = useState('');
-    const [disenador, setDisenador] = useState('');
+    const [Catalogo_id_catalogo, setCatalogo] = useState('');
 
-    const id = 0;
+    //const [Categoria_id_categoria, setCategoria] = useState('');
+    //const [Producto_id_producto, setP_c] = useState('');
 
-    useEffect( () => {
-      fetchItems();
-  }, []);
-
-  const fetchItems = async () => {
-      const data = await fetch('/getdisenador');
-      const items = await data.json();
-      setItems(items);
-  };
+    const fetchCatalogo = (e) => {
+        const data = await fetch(`/getcatalogo/${id}`);
+        const items = await data.json();
+        setItems(items);
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const producto = { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje,  id, disenador } 
-    
+        const producto = { nombre, imagen, caracteristicas, precio, colores, instrucciones, descripcion, ancho, largo, requiere_montaje, Catalogo_id_catalogo } ;
+        //const p_c = {Categoria_id_categoria, Producto_id_producto}
 
-    fetch('/crearproducto', {
-      method: 'POST',
+    fetch(`/crearproducto`, {
+      method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(producto)
     });
- };
-
+    window.location.reload();
+    };
     return(<section>
-         <h2>Agregar Producto</h2>
-      <form onSubmit={handleSubmit}>
-      <div class="card-body p-1">
-        <label>Nombre:</label>
-        <input 
-          type="text" 
-          required 
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-        <label>Imagen:</label>
-        <input 
-          type="file" 
-          required 
-          accept='image/*'
-          value={imagen}
-          onChange={(e) => setImagen(e.target.value)}
-        />
-        <label>Caracteristicas:</label>
-        <input 
-          type="text" 
-          required 
-          value={caracteristicas}
-          onChange={(e) => setCaracteristicas(e.target.value)}
-        />
-        <label>Precio:</label>
-        <input 
-          type="number" 
-          required 
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
-        />
-        <label>Colores:</label>
-        <input 
-          type="text" 
-          required 
-          value={colores}
-          onChange={(e) => setColores(e.target.value)}
-        />
-        <label>Instrucciones:</label>
-        <input 
-          type="text" 
-          required 
-          value={instrucciones}
-          onChange={(e) => setInstrucciones(e.target.value)}
-        />
-        <label>Descripcion:</label>
-        <input 
-          type="text" 
-          required 
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        />
-        <label>Ancho:</label>
-        <input 
-          type="number" 
-          required 
-          value={ancho}
-          onChange={(e) => setAncho(e.target.value)}
-        />
-        <label>Largo:</label>
-        <input 
-          type="number" 
-          required 
-          value={largo}
-          onChange={(e) => setLargo(e.target.value)}
-        />
-        <label>Requiere montaje?:</label>
-       <select name="reqmontaje" 
-       id="reqmontaje" 
-       onChange={(e) => setMontaje(e.target.value)}>
-            <option value="true">Si</option>
-            <option value="false">No</option>
-       </select>
-       <label>Diseñador:</label>
-       <select name="disenador" 
-       id="disenador" 
-       onChange={(e) => setDisenador(e.target.value)}>
-        {items.map(item =>(
-            <option value={item.id_dise}>{item.nombre} {item.apellido}</option>
-        ))}
-       </select>
-        <button>Crear</button>
-        </div>
-      </form>
-    </section>);
-}
+        <h2>Agregar producto</h2>
+        <Form className="create-form" onSubmit={handleSubmit}>
+                <Form.Field>
+                    <label>Nombre del Producto</label>
+                    <input placeholder='Nombre' value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Imagen</label>
+                    <input type = "file" value={imagen} onChange={(e) => setImagen(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Caracteristicas</label>
+                    <input  placeholder='Caracteristicas' value={caracteristicas} onChange={(e) => setCaracteristicas(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Precio</label>
+                    <input type="number" placeholder='1' value={precio} onChange={(e) => setPrecio(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Colores</label>
+                    <input  placeholder='Colores' value={colores} onChange={(e) => setColores(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Instrucciones</label>
+                    <input  placeholder='Instrucciones' value={instrucciones} onChange={(e) => setInstrucciones(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Descripcion</label>
+                    <input  placeholder='Descripcion' value={descripcion} onChange={(e) => setDescripcion(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Ancho</label>
+                    <input type="number" placeholder='1' value={ancho} onChange={(e) => setAncho(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Largo</label>
+                    <input type="number" placeholder='1' value={largo} onChange={(e) => setLargo(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Requiere Montaje?</label>
+                    <input type="radio" checked="checked" name="radio" value="true" onChange={(e) => setMontaje(e.target.value)}>Sí</input>
+                    <input type="radio" name="radio" value="false" onChange={(e) => setMontaje(e.target.value)}>No</input>
+                </Form.Field>
+                <Form.Field>
+                    <label>Catálogo</label>
+                    <Select className="basic-single" classNamePrefix="select" onChange={(e) => setCatalogo(e.target.value)}>
+                        {
+                            items.map(item => (
+                                <option value={item.id_catalogo}>{item.fecha_inicial} - {item.fecha_final}</option>
+                              ))
+                        }
+                    </Select>
+                </Form.Field>
+                <Button type='submit'>Agregar</Button>
+            </Form>
+   </section>);
+};
 
-export default AgregarProducto;
+export default CrearProducto;

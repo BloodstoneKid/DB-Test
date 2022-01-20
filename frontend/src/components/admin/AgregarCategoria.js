@@ -1,75 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, setState } from 'react';
 import '../Sections.css';
+import Select from 'react-select'
+import React, { Component } from 'react';
 
 function AgregarCategoria(){
-
-    const [nombre, setNombre] = useState('');
-    const [nivel, setNivel] = useState('');
-    const [descripcion, setDescripcion] = useState('');
-    const [catrelacionada, setCatRelacionada] = useState('');
-    const [items, setItems] = useState([]);
-
-
     useEffect( () => {
         fetchItems();
     }, []);
 
     const fetchItems = async () => {
-        const data = await fetch('/getsupercategorias');
+        const data = await fetch('/getinfotodascategorias');
         const items = await data.json();
         setItems(items);
     };
 
+    const [nombre, setNombre] = useState('');
+    const [nivel, setNivel] = useState('');
+    const [descripcion, setDescripcion] = useState('');
+    const [fk_categoria, setFK_Categoria] = useState('');
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const categoria = { nombre, nivel, descripcion, catrelacionada } 
-    
+        const categoria = { nombre, nivel, descripcion, fk_categoria } 
 
-    fetch('/crearcategoria', {
-      method: 'POST',
+    fetch(`/crearcategoria/`, {
+      method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(categoria)
     });
- };
-
+    window.location.reload();
+    };
     return(<section>
-         <h2>Agregar categoria</h2>
-      <form onSubmit={handleSubmit}>
-      <div class="card-body p-1">
-        <label>Nombre:</label>
-        <input 
-          type="text" 
-          required 
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-        />
-        <label>Nivel:</label>
-       <select name="nivel" 
-       id="nivel" 
-       required 
-       onChange={(e) => setNivel(e.target.value)}>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-       </select>
-        <label>Descripcion:</label>
-        <input 
-          type="text" 
-          required 
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
-        />
-        <label>Supercategoria (opcional):</label>
-       <select name="catrelacionada" 
-       id="catrelacionada" 
-       onChange={(e) => setCatRelacionada(e.target.value)}>
-        {items.map(item =>(
-            <option value={item.id_categoria}>{item.nombre}</option>
-        ))}
-       </select>
-        <button>Crear</button>
-        </div>
-      </form>
-    </section>);
-}
+        <h2>Agregar categoría</h2>
+        <Form className="create-form" onSubmit={handleSubmit}>
+                <Form.Field>
+                    <label>Nombre de la Categoría</label>
+                    <input placeholder='Nombre' value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Nivel de Categoría</label>
+                    <input  placeholder='1' value={nivel} onChange={(e) => setNivel(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Descripción</label>
+                    <input type="number" placeholder='Descripcion' value={descripcion} onChange={(e) => setDescripcion(e.target.value)}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Subcategoría</label>
+                    <Select className="basic-single" classNamePrefix="select" onChange={(e) => setFK_Categoria(e.target.value)}>
+                        {
+                            items.map(item => (
+                                <option value={item.id_categoria}>{item.nombre}</option>
+                              ))
+                        }
+                    </Select>
+                </Form.Field>
+                <Button type='submit'>Agregar</Button>
+            </Form>
+   </section>);
+};
 
 export default AgregarCategoria;

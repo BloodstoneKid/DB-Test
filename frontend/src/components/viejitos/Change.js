@@ -11,7 +11,7 @@ function Change(){
     useEffect( () => {
         fetchItems();
     }, []);
-
+ 
     const fetchItems = async () => {
         const data = await fetch('/getmembers');
         const items = await data.json();

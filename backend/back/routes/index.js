@@ -1,14 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const { getInfoCategoria, getInfoCategorias, getSubCategorias,
-    getInfoEvento, getInfoEventos, getInfoFacturas, getInfoDetalleFactura, getInfoMenu,
-    getInfoOferta, getInfoOfertas, getInfoPlato, getInfoProducto,
-    getInfoProductos, getInfoTienda, getInfoTiendas, getInfoTodasCategorias,
-    getProductosRelacionados, AfiliarCliente, AgregarHijo, crearProducto, crearPlato,
-    crearOferta, crearFactura, crearEvento, crearCategoria,
-    updateProducto, updatePlato, updateOferta, updateEvento, 
-    updateCategoria, deleteProducto, deletePlato, deleteOferta, 
-    deleteEvento, deleteCategoria, getCiudades, getSuperCategorias, getDisenador } = require('../controllers/index.controller');
+//const {} = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
@@ -19,7 +11,6 @@ router.get('/getinfoofertas/:id', getInfoOfertas);
 router.get('/getinfoeventos/:id', getInfoEventos);
 router.get('/getinfomenu/:id', getInfoMenu);
 router.get('/getinfofacturas/:id', getInfoFacturas);
-router.get('/getinfodetallefactura/:id',getInfoDetalleFactura);
 router.get('/getinfotienda/:id', getInfoTienda);
 router.get('/getinfoproducto/:id', getInfoProducto);
 router.get('/getproductosrelacionados/:id', getProductosRelacionados);
@@ -28,12 +19,12 @@ router.get('/getsubcategorias/:id', getSubCategorias);
 router.get('/getinfooferta/:id', getInfoOferta);
 router.get('/getinfoevento/:id', getInfoEvento);
 router.get('/getinfoplato/:id', getInfoPlato);
-router.get('/getciudades', getCiudades);
-router.get('/getsupercategorias', getSuperCategorias);
-router.get('/getdisenador', getDisenador);
+router.get('/getcategoria/:id', getCategoria);
+router.get('/getcatalogo/:id', getCatalogo);
+router.get('/getregion', getRegion);
+router.get('/getregioncatalogo', getRegionCatalogo);
 //Posts
 router.post('/afiliarcliente', AfiliarCliente);
-router.post('/agregarhijo', AgregarHijo);
 router.post('/crearfactura', crearFactura);
 router.post('/crearcategoria', crearCategoria);
 router.post('/crearproducto', crearProducto);

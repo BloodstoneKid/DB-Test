@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import '../Sections.css';
-import EditarProducto from './EditarProducto';
-import AgregarProducto from './AgregarPlato';
 
 function CatalogoCiudadAdmin(){
     useEffect( () => {
@@ -10,47 +8,50 @@ function CatalogoCiudadAdmin(){
 
     const [items, setItems] = useState([]);
     const id = 0;
+    const id_region = 0;
 
     const fetchItems = async () => {
-        const data = await fetch(`/getinfoproductos/${id}`);
+        const data = await fetch(`/getcatalogo/${id}`);
         const items = await data.json();
         setItems(items);
-    };
-
-    const deleteItems = async () => {
-        const response = await fetch('/deleteproducto', {
-       method: 'DELETE', 
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: null
-   });
     }
 
+    const fetchRegion = async () => {
+        const data = await fetch(`/getregioncatalogo/${id_region}`);
+        const itemsR = await data.json();
+        setItems(itemsR);
+        return itemsR.nombre;
+    };
+
+    
+
     return(<section>
-        {items.map(item =>(
-             <div class="container-fluid p-3 w-50">
-             <div class="card-deck">
-                 <div class="card">
-                     <div class="card-body p-1">
-                         <h6 class="card-title">{item.nombre}</h6>
-                         {item.imagen}
-                         <p class="card-text">Caracteristicas: {item.caracteristicas}</p>
-                         <p class="card-text">Precio: {item.precio}</p>
-                         <p class="card-text">Colores: {item.colores}</p>
-                         <p class="card-text">Instrucciones: {item.instrucciones}</p>
-                         <p class="card-text">Descripcion: {item.descripcion}</p>
-                         <p class="card-text">Ancho: {item.ancho}</p>
-                         <p class="card-text">Largo: {item.largo}</p>
-                         <p class="card-text">Requiere montaje?: {item.requiere_montaje}</p>
-                         <EditarProducto/>
-                         <button onClick={deleteItems}>Eliminar</button>
-                     </div>
-                 </div>
-             </div>
-         </div>
-        ))}
-        <AgregarProducto/>
+        <div>
+            <Table singleLine>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>Fecha Inicial</Table.HeaderCell>
+                        <Table.HeaderCell>Fecha Final</Table.HeaderCell>
+                        <Table.HeaderCell>Pais</Table.HeaderCell>
+                        <Table.HeaderCell> </Table.HeaderCell>
+                        <Table.HeaderCell> </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+            
+                <Table.Body>
+                {items.map(item => (
+                    <Table.Row>
+                        <Table.Cell>{item.fecha_inicial}</Table.Cell>
+                        <Table.Cell>{item.fecha_final}</Table.Cell>
+                        <Table.Cell>{fetchRegion(item.Region_id_region)}</Table.Cell>
+                        <Link to='/updatecategoria'><Table.Cell><Button onClick={() => setData(item)}>Editar</Button></Table.Cell></Link>
+                        <Table.Cell><Button onClick={() => setData(item)}>Eliminar</Button></Table.Cell>
+                    </Table.Row>
+                    ))}
+                </Table.Body>
+        </Table>
+    </div>
     </section>);
 
 }
