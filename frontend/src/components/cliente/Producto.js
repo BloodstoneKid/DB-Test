@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import '../Sections.css';
 
-function Producto(){
+function Producto({setItemCarrito}){
     useEffect( () => {
         fetchItems1();
     }, []);
@@ -49,7 +49,7 @@ function Producto(){
                           $ {item.precio}
                         </p>
                       </div>
-                      <button class="btn-cart welcome-add-cart" onclick="window.location.href='#'">
+                      <button class="btn-cart welcome-add-cart" onclick={()=> setItemCarrito(item.id_producto)}>
                         <span class="lnr lnr-plus-circle"></span>
                         Añadir <span>al</span> Carro
                       </button>

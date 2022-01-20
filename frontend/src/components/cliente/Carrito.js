@@ -2,39 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../Sections.css';
 import SeleccionarCliente from './SeleccionarCliente';
-import { addToCart, clearCart, delFromCart } from "./elementos_carrito/shoppingAction";
-import CartItem from "./elementos_carrito/CartItem";
-import Producto from './Producto';
+import ItemCarrito from './ItemCarrito';
 
-function Carrito(){
-    const state = useSelector((state) => state);
-  const dispatch = useDispatch();
+function Carrito({arrayItems}){
 
-  const { products, cart } = state.shopping;
+  const productos = arrayItems;
 
     return(<section>
         <div>
       <h2>Carrito de Compras</h2>
-      <h3>Productos</h3>
       <article className="box grid-responsive">
-        {products.map((product) => (
-          <Producto
-            key={product.id_producto}
-            data={product}
-            addToCart={() => dispatch(addToCart(product.id_producto))}
-          />
-        ))}
-      </article>
-      <h3>Carrito</h3>
-      <article className="box">
-        <button onClick={() => dispatch(clearCart())}>Limpiar Carrito</button>
-        {cart.map((item, index) => (
-          <CartItem
-            key={index}
-            data={item}
-            delOneFromCart={() => dispatch(delFromCart(item.id))}
-            delAllFromCart={() => dispatch(delFromCart(item.id, true))}
-          />
+        {productos.map(prod => (
+          <ItemCarrito idProd = {prod}/>
         ))}
       </article>
       <button onClick={<SeleccionarCliente/>}>Reservar</button>

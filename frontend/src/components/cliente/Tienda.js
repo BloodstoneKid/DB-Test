@@ -15,10 +15,7 @@ function Tienda(){
     }, []);
 
     const [items, setItems] = useState([]);
-<<<<<<< Updated upstream
     const { id } = useParams();
-=======
->>>>>>> Stashed changes
 
     const fetchItems = async () => {
         const data = await fetch(`/getinfotienda/${id}`);

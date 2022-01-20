@@ -1,4 +1,5 @@
 import './App.css';
+import React, {useState} from 'react';
 import Home from './components/Home';
 import Tienda from './components/cliente/Tienda';
 import Categoria from './components/cliente/Categoria';
@@ -16,6 +17,14 @@ import VerFacturas from './components/admin/VerFacturas';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 function App() {
+  const [item_carrito, setData] = useState('');
+  var items_carrito = [];
+
+  const setItemCarrito = (id_producto) => {
+   setData(id_producto);
+   items_carrito.push(item_carrito);
+  }
+
   return (
     <div className="App">
        <Router>
@@ -24,8 +33,8 @@ function App() {
             <Route path="/" exact element={<Home/>} />
             <Route path="/tienda/:id" exact element={<Tienda/>} />
             <Route path="/categoria/:id" exact element={<Categoria/>} />
-            <Route path="/producto/:id" exact element={<Producto/>} />
-            <Route path="/carrito" exact element={<Carrito/>} />
+            <Route path="/producto/:id" exact element={<Producto setItemCarrito={setItemCarrito}/>} />
+            <Route path="/carrito" exact element={<Carrito arrayItems={items_carrito}/>} />
             <Route path="/homeadmin" exact element={<HomeAdmin/>} />
             <Route path="/listacategorias" exact element={<EditarListaCategorias/>} />
             <Route path="/listacatalogos" exact element={<EditarCatalogo/>} />
