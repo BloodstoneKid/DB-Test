@@ -39,7 +39,7 @@ function FormaPago({listaProd, comprador}){
             </form>
             </section>
         ))}
-        <button onClick={<AgregarInstrumento/>}>Agregar instrumento</button>
+        <button onClick={<AgregarInstrumento idDueno={comprador_instrumento}/>}>Agregar instrumento</button>
     </section>);
 
 }

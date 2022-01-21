@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import '../Sections.css';
 
 
-function AgregarHijo(){
+function AgregarHijo({idPadre}){
     const [nombre, setNombre] = useState('');
     const [apellido, setApellido] = useState('');
     const [genero, setGenero] = useState('');
     const [fechanac, setFechaNac] = useState('');
 
-    const id = 0;
+    const id = {idPadre};
 
 
     const handleSubmit = (e) => {
@@ -46,8 +46,8 @@ function AgregarHijo(){
        id="genero" 
        required 
        onChange={(e) => setGenero(e.target.value)}>
-        <option value="Masculino">Masculino</option>
-        <option value="Femenino">Femenino</option>
+        <option value={genero}>Masculino</option>
+        <option value={genero}>Femenino</option>
        </select>
         <label>Fecha de nacimiento:</label>
         <input 

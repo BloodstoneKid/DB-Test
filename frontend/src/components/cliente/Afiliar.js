@@ -96,7 +96,7 @@ function Afiliar({listaProd}){
         <button>Afiliar</button>
         </div>
       </form>
-      <AgregarHijo/>
+      <AgregarHijo idPadre={identificacion}/>
     </section>);
 }
 

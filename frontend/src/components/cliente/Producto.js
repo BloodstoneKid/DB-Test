@@ -48,7 +48,7 @@ function Producto({setItemCarrito}){
                           $ {item.precio}
                         </p>
                       </div>
-                      <button class="btn-cart welcome-add-cart" onclick={()=> setItemCarrito(item.id_producto)}>
+                      <button class="btn-cart welcome-add-cart" onclick={()=> setItemCarrito(item.Catalogo_id_catalogo)}>
                         <span class="lnr lnr-plus-circle"></span>
                         Añadir <span>al</span> Carro
                       </button>

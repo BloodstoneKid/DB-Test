@@ -48,7 +48,8 @@ const {getInfoCategoria,
     deleteEvento,
     deleteOferta,
     deletePlato,
-    deleteProducto} = require('../controllers/index.controller');
+    deleteProducto,
+    AgregarInstrumento} = require('../controllers/index.controller');
 
 //Gets
 router.get('/getinfotiendas', getInfoTiendas);
@@ -86,6 +87,7 @@ router.post('/crearproducto', crearProducto);
 router.post('/crearplato', crearPlato);
 router.post('/crearoferta', crearOferta);
 router.post('/crearevento', crearEvento);
+router.post('/agregarinstrumento', AgregarInstrumento);
 //Puts
 router.put('/updatecategoria/:id', updateCategoria);
 router.put('/updateproducto/:id', updateProducto);

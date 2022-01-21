@@ -190,12 +190,19 @@ const crearOferta = async (req, res) => {
     const { porcentaje, fecha_inicio, fecha_fin, categoria } = req.body;
     const response = await pool.query('INSERT INTO AMY_Descuento (porcentaje, fecha_inicio, fecha_fin) VALUES ($1, $2, $3) RETURNING id; INSERT INTO AMY_D_C(Descuento_id_descuento, Categoria_id_categoria) VALUES(id, $4);', [porcentaje, fecha_inicio, fecha_fin, categoria]);
 }
-
+const crearDetalleFactura = async (req, res) => {
+    const { id_factu } = req.body;
+    const response = await pool.query('INSERT INTO AMY_Det_Factura (cantidad, Factura_id_factura, Catalogo_id_catalogo) VALUES ($1, $2, $3);', [necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento]);
+}
 const crearFactura = async (req, res) => {
     const { necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento } = req.body;
-    const response = await pool.query('INSERT INTO AMY_Factura (necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento) VALUES ($1, $2, $3, $4, $5, $6);', [necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento]);
+    const response = await pool.query('INSERT INTO AMY_Factura (necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;', [necesita_transporte, fecha, total, forma_pago, caja_id_caja, Instrumento_id_instrumento]);
+    res.end(JSON.stringify(response.rows));
 }
-
+const AgregarInstrumento = async (req, res) => {
+    const { tipo, num_tarjeta, fecha_expedicion, telefono, email, id } = req.body;
+    const response = await pool.query('INSERT INTO AMY_Instrumento (tipo, num_tarjeta, fecha_expedicion, telefono, email, cliente_id_cliente) VALUES ($1, $2, $3, $4, $5, $6);', [tipo, num_tarjeta, fecha_expedicion, telefono, email, id]);
+}
 
 
 //Puts
@@ -330,6 +337,7 @@ module.exports = {
     crearPlato,
     crearProducto,
     AgregarHijo,
+    AgregarInstrumento,
     updateCatalogo,
     updateCategoria,
     updateEvento,
